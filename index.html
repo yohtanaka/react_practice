@@ -11,8 +11,20 @@
 	<div id='root'></div>
 	<script type="text/babel">
 		(() => {
+
+			function Counter(props) {
+				return <li style={{backgroundColor:props.color}}>0</li>;
+			}
+
 			ReactDOM.render(
-				<p>Hello World!</p>,
+				<div className='container'>
+					<h1>React Practice</h1>
+					<ul>
+						<Counter color='tomato'/>
+						<Counter color='skyblue'/>
+						<Counter color='limegreen'/>
+					</ul>
+				</div>,
 				document.getElementById('root')
 			);
 		})();
