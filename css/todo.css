@@ -3,6 +3,13 @@ body {
 	font-family: Verdana, sans-serif;
 }
 
+h1 > span {
+	color: #aaa;
+	font-size: 12px;
+	font-weight: normal;
+	margin-left: 5px;
+}
+
 .container {
 	width: 300px;
 	margin: auto;
