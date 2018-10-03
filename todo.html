@@ -21,6 +21,7 @@
 
 				return (
 					<h1>
+						<button onClick={props.purge}>Purge</button>
 						My Todos
 						<span>({remaining.length}/{props.todos.length})</span>
 					</h1>
@@ -86,6 +87,34 @@
 					this.deleteTodo = this.deleteTodo.bind(this);
 					this.updateItem = this.updateItem.bind(this);
 					this.addTodo = this.addTodo.bind(this);
+					this.purge = this.purge.bind(this);
+				}
+
+				addTodo(e) {
+					e.preventDefault();
+
+					if (this.state.item.trim() === '') {
+						return;
+					}
+
+					const item = {
+						id: getUniqueId(),
+						title: this.state.item,
+						isDone: false
+					};
+
+					const todos = this.state.todos.slice();
+					todos.push(item);
+					this.setState({
+						todos: todos,
+						item: ''
+					});
+				}
+
+				updateItem(e) {
+					this.setState({
+						item: e.target.value
+					});
 				}
 
 				checkTodo(todo) {
@@ -117,30 +146,16 @@
 					});
 				}
 
-				updateItem(e) {
-					this.setState({
-						item: e.target.value
-					});
-				}
-
-				addTodo(e) {
-					e.preventDefault();
-
-					if (this.state.item.trim() === '') {
+				purge() {
+					if (!confirm('are you sure?')) {
 						return;
 					}
 
-					const item = {
-						id: getUniqueId(),
-						title: this.state.item,
-						isDone: false
-					};
-
-					const todos = this.state.todos.slice();
-					todos.push(item);
+					const todos = this.state.todos.filter(todo => {
+						return !todo.isDone;
+					});
 					this.setState({
-						todos: todos,
-						item: ''
+						todos: todos
 					});
 				}
 
@@ -149,6 +164,7 @@
 						<div className="container">
 							<TodoHeader
 								todos={this.state.todos}
+								purge={this.purge}
 							/>
 							<TodoList
 								todos={this.state.todos}
