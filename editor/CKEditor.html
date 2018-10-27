@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
+</head>
+<body>
+    <h1>CKEditor</h1>
+    <textarea name="content" id="editor"></textarea>
+    <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    </script>
+    <style type="text/css">
+        .ck {
+            height: 300px;
+        }
+    </style>
+</body>
+</html>
